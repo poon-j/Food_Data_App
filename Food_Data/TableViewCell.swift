@@ -9,15 +9,31 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
+    @IBOutlet var foodName: UILabel!
+    @IBOutlet var foodInfo: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    static let identifier = "TableViewCell"
+    
+    static func nib() -> UINib {
+        return UINib(nibName: "TableViewCell", bundle: nil)
+    }
+    
+    func configure(with model: Food) {
+        self.foodName.text = model.name
+        self.foodInfo.text = "Calories: " + model.calories.description + "\n" +
+            "Protein: " + model.protein.description + "\n" +
+            "Carbs: " + model.carbs.description + "\n" +
+            "Fat: " + model.fat.description + "\n"
+        
     }
     
 }
